@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, FlatList, Text} from 'react-native';
-import {Header} from '../../components';
+import {Header, ProductItem} from '../../components';
 import {useSelector} from 'react-redux';
 
 export const ProductOverviewScreen = () => {
@@ -12,7 +12,7 @@ export const ProductOverviewScreen = () => {
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={products}
-        renderItem={({item}) => <Text>{item.title}</Text>}
+        renderItem={({item}) => <ProductItem data={item} />}
       />
     </View>
   );
