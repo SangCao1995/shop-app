@@ -2,9 +2,12 @@ import React from 'react';
 import {View, Text, ScrollView, Image, Button, StyleSheet} from 'react-native';
 import {Header} from '../../components';
 import {Colors} from '../../themes';
+import {useDispatch} from 'react-redux';
+import {cartActions} from '../../store/actions';
 
 export const ProductDetailScreen = props => {
   const product = props.route.params.product;
+  const dispatch = useDispatch();
 
   return (
     <View style={{flex: 1}}>
@@ -18,7 +21,11 @@ export const ProductDetailScreen = props => {
           style={{width: '100%', height: 300}}
         />
         <View style={{alignItems: 'center', marginVertical: 10}}>
-          <Button title={'Add to Cart'} color={Colors.primary} />
+          <Button
+            title={'Add to Cart'}
+            color={Colors.primary}
+            onPress={() => dispatch(cartActions.addToCart(product))}
+          />
         </View>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
         <Text style={styles.description}>{product.description}</Text>
