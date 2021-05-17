@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 import {Colors} from '../../themes';
 import Icon from '../../images/icons';
 
-export const Header = ({title, onBackClick}) => {
+export const Header = ({title, onBackClick, onCartClick, isHeaderRight}) => {
   return (
     <View style={styles.header}>
       {onBackClick && (
@@ -15,7 +15,15 @@ export const Header = ({title, onBackClick}) => {
         />
       )}
       <Text style={styles.title}>{title}</Text>
-      <View style={{width: 24}} />
+      {!isHeaderRight && <View style={{width: 24}} />}
+      {onCartClick && (
+        <Icon.Ionicons
+          name={'md-cart'}
+          size={24}
+          color={Platform.OS === 'android' ? 'white' : Colors.primary}
+          onPress={onCartClick}
+        />
+      )}
     </View>
   );
 };

@@ -31,7 +31,33 @@ const cartReducer = (state = initialState, action) => {
         items: {...state.items, [addedProduct.id]: item},
         totalAmount: state.totalAmount + addedProduct.price,
       };
+    case cartTypes.REMOVE_FROM_CART:
+      const selectedCartItem = state.items[action.data.productId];
+      const currentQuantity = selectedCartItem.quantity;
+      let updatedCartItems;
+      if (currentQuantity > 1) {
+        // need to reduce it, not to esase it
+        const updatedCartItem = {
+          quantity: selectedCartItem.quantity - 1,
+          productPrice: selectedCartItem.productPrice,
+          productTitle: selectedCartItem.productTitle,
+          sum: selectedCartItem.sum - selectedCartItem.productPrice,
+        };
+        updatedCartItems = {
+          ...state.items,
+          [action.data.productId]: updatedCartItem,
+        };
+      } else {
+        updatedCartItems = {...state.items};
+        delete updatedCartItems[action.data.productId];
+      }
+      return {
+        ...state,
+        items: updatedCartItems,
+        totalAmount: state.totalAmount - selectedCartItem.productPrice,
+      };
   }
+
   return state;
 };
 

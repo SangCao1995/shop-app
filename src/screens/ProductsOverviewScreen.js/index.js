@@ -12,7 +12,11 @@ export const ProductOverviewScreen = props => {
 
   return (
     <View style={{flex: 1}}>
-      <Header title={'All products'} />
+      <Header
+        title={'All products'}
+        isHeaderRight
+        onCartClick={() => props.navigation.navigate(SCREEN.CART)}
+      />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={products}
