@@ -11,9 +11,9 @@ const orderReducer = (state = initialState, action) => {
         id: new Date().toString(),
         items: action.data.items,
         totalAmount: action.data.totalAmount,
-        data: new Date(),
+        date: new Date(),
       };
-      return {...state, order: newOrder};
+      return {...state, order: state.order.concat(newOrder)};
   }
   return state;
 };
