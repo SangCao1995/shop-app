@@ -7,17 +7,23 @@ export const CartItem = ({data, onRemove}) => {
     <View style={styles.cartItem}>
       <View style={styles.itemData}>
         <Text style={styles.quantity}>{data.quantity}</Text>
-        <Text style={styles.mainText}>{data.productTitle}</Text>
+        <View style={{width: 170}}>
+          <Text style={styles.mainText} numberOfLines={1}>
+            {data.productTitle}
+          </Text>
+        </View>
       </View>
       <View style={styles.itemData}>
         <Text style={styles.mainText}>${data.sum.toFixed(2)}</Text>
-        <Icon.Ionicons
-          name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
-          color={'red'}
-          size={24}
-          onPress={onRemove}
-          style={{marginLeft: 20}}
-        />
+        {onRemove && (
+          <Icon.Ionicons
+            name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+            color={'red'}
+            size={24}
+            onPress={onRemove}
+            style={{marginLeft: 20}}
+          />
+        )}
       </View>
     </View>
   );
@@ -43,5 +49,6 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 16,
     fontFamily: 'OpenSans-Bold',
+    // width: 150,
   },
 });

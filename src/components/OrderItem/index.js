@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import {Colors} from '../../themes';
 import moment from 'moment';
+import {CartItem} from '../../screens/CartScreen/components';
 
 export const OrderItem = ({data}) => {
+  const [showDetails, setShowDetails] = useState(false);
   return (
     <View style={styles.orderItem}>
       <View style={styles.summary}>
@@ -14,7 +16,18 @@ export const OrderItem = ({data}) => {
           {moment(data.date).format('MMMM Do YYYY, hh:mm')}
         </Text>
       </View>
-      <Button color={Colors.primary} title={'Show Details'} />
+      <Button
+        color={Colors.primary}
+        title={showDetails ? 'Hide Details' : 'Show Details'}
+        onPress={() => setShowDetails(preState => !preState)}
+      />
+      {showDetails && (
+        <View style={{width: '100%'}}>
+          {data.items.map(cartItem => (
+            <CartItem key={cartItem.productId} data={cartItem} />
+          ))}
+        </View>
+      )}
     </View>
   );
 };
