@@ -4,7 +4,7 @@ import {Header} from '../../components';
 import {useSelector, useDispatch} from 'react-redux';
 import {Colors} from '../../themes';
 import {CartItem} from './components';
-import {cartActions} from '../../store/actions';
+import {cartActions, orderActions} from '../../store/actions';
 
 export const CartScreen = props => {
   const totalAmount = useSelector(state => state.cart.totalAmount);
@@ -21,11 +21,18 @@ export const CartScreen = props => {
     }
     return transformedCartItems;
   });
-  console.log(cartItems);
   const dispatch = useDispatch();
 
   const onRemoveHandle = item => {
     dispatch(cartActions.removeFromCart(item));
+  };
+
+  const onAddOrderHandle = () => {
+    const data = {
+      items: cartItems,
+      totalAmount,
+    };
+    dispatch(orderActions.addOrder(data));
   };
 
   return (
@@ -43,6 +50,7 @@ export const CartScreen = props => {
             title={'Order Now'}
             disabled={totalAmount === 0}
             color={Colors.accent}
+            onPress={onAddOrderHandle}
           />
         </View>
         <View>
