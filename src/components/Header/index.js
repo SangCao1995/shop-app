@@ -3,7 +3,13 @@ import {View, Text, StyleSheet, Platform} from 'react-native';
 import {Colors} from '../../themes';
 import Icon from '../../images/icons';
 
-export const Header = ({title, onBackClick, onCartClick, isHeaderRight}) => {
+export const Header = ({
+  title,
+  onBackClick,
+  onCartClick,
+  isHeaderRight,
+  onMenuClick,
+}) => {
   return (
     <View style={styles.header}>
       {onBackClick && (
@@ -12,6 +18,14 @@ export const Header = ({title, onBackClick, onCartClick, isHeaderRight}) => {
           size={24}
           color={Platform.OS === 'android' ? 'white' : Colors.primary}
           onPress={onBackClick}
+        />
+      )}
+      {onMenuClick && (
+        <Icon.Ionicons
+          name={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          size={24}
+          color={Platform.OS === 'android' ? 'white' : Colors.primary}
+          onPress={onMenuClick}
         />
       )}
       <Text style={styles.title}>{title}</Text>

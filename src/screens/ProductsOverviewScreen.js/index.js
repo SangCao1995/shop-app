@@ -16,6 +16,7 @@ export const ProductOverviewScreen = props => {
         title={'All products'}
         isHeaderRight
         onCartClick={() => props.navigation.navigate(SCREEN.CART)}
+        onMenuClick={() => props.navigation.toggleDrawer()}
       />
       <FlatList
         keyExtractor={(item, index) => item.id}
