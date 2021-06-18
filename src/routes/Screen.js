@@ -5,4 +5,6 @@ export const SCREEN = {
   ORDER: 'ORDER_SCREEN',
 
   DRAWER: 'DRAWER',
+
+  USER_PRODUCTS: 'USER_PRODUCTS_SCREEN',
 };

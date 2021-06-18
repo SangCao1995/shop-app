@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 
 export const OrderScreen = props => {
   const orders = useSelector(state => state.order.order);
-  console.log(orders);
+
   return (
     <View style={{flex: 1}}>
       <Header

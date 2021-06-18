@@ -1,7 +1,11 @@
 import React from 'react';
 import {LogBox} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {ProductOverviewScreen, OrderScreen} from '../screens';
+import {
+  ProductOverviewScreen,
+  OrderScreen,
+  UserProductsScreen,
+} from '../screens';
 import {SCREEN} from './Screen';
 import {Colors} from '../themes';
 import Icon from '../images/icons';
@@ -34,6 +38,19 @@ export const DrawerNavigator = () => {
             let focusedIcon = focused ? Colors.primary : 'gray';
             return (
               <Icon.Ionicons name={'md-list'} size={24} color={focusedIcon} />
+            );
+          },
+        }}
+      />
+      <Drawer.Screen
+        name={SCREEN.USER_PRODUCTS}
+        component={UserProductsScreen}
+        options={{
+          title: 'Admin',
+          drawerIcon: ({focused, color, size}) => {
+            let focusedIcon = focused ? Colors.primary : 'gray';
+            return (
+              <Icon.Ionicons name={'md-create'} size={24} color={focusedIcon} />
             );
           },
         }}
