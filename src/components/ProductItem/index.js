@@ -4,14 +4,13 @@ import {
   Text,
   Image,
   StyleSheet,
-  Button,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
 } from 'react-native';
-import {Colors} from '../../themes';
 
-export const ProductItem = ({data, onAddTocart, onViewDetails}) => {
+export const ProductItem = props => {
+  const {data, onSelect} = props;
   let TouchableComponent = TouchableOpacity;
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableComponent = TouchableNativeFeedback;
@@ -20,7 +19,7 @@ export const ProductItem = ({data, onAddTocart, onViewDetails}) => {
   return (
     <View style={styles.productItem}>
       <View style={{borderRadius: 10, overflow: 'hidden'}}>
-        <TouchableComponent onPress={onViewDetails} useForeground>
+        <TouchableComponent onPress={onSelect} useForeground>
           <View>
             <View style={styles.imageWrapper}>
               <Image
@@ -32,18 +31,7 @@ export const ProductItem = ({data, onAddTocart, onViewDetails}) => {
               <Text style={styles.title}>{data.title}</Text>
               <Text style={styles.price}>${data.price.toFixed(2)}</Text>
             </View>
-            <View style={styles.actions}>
-              <Button
-                title={'View Details'}
-                color={Colors.primary}
-                onPress={onViewDetails}
-              />
-              <Button
-                title={'To Cart'}
-                color={Colors.primary}
-                onPress={onAddTocart}
-              />
-            </View>
+            <View style={styles.actions}>{props.children}</View>
           </View>
         </TouchableComponent>
       </View>
