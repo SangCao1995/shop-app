@@ -6,3 +6,7 @@ export const cartTypes = {
 export const orderTypes = {
   ADD_ORDER: 'ADD_ORDER',
 };
+
+export const productTypes = {
+  DELETE_PRODUCT: 'DELETE_PRODUCT',
+};

@@ -1,4 +1,5 @@
 import {productsData} from '../../constants';
+import {productTypes} from '../actions/actionTypes';
 
 const initialState = {
   availableProducts: productsData,
@@ -6,6 +7,20 @@ const initialState = {
 };
 
 const productsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case productTypes.DELETE_PRODUCT:
+      const userProductsDeleted = state.userProducts.filter(
+        product => product.id !== action.data.id,
+      );
+      const availableProductsDelete = state.availableProducts.filter(
+        product => product.id !== action.data.id,
+      );
+      return {
+        ...state,
+        userProducts: userProductsDeleted,
+        availableProducts: availableProductsDelete,
+      };
+  }
   return state;
 };
 

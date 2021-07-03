@@ -1,4 +1,4 @@
-import {cartTypes, orderTypes} from '../actions/actionTypes';
+import {cartTypes, orderTypes, productTypes} from '../actions/actionTypes';
 
 const initialState = {
   items: {},
@@ -58,6 +58,18 @@ const cartReducer = (state = initialState, action) => {
       };
     case orderTypes.ADD_ORDER:
       return initialState;
+    case productTypes.DELETE_PRODUCT:
+      if (!state.items[action.data.id]) {
+        return state;
+      }
+      const updatedItems = {...state.items};
+      const itemTotal = state.items[action.data.id].sum;
+      delete updatedItems[action.data.id];
+      return {
+        ...state,
+        items: updatedItems,
+        totalAmount: state.totalAmount - itemTotal,
+      };
   }
 
   return state;
