@@ -9,6 +9,7 @@ export const Header = ({
   onCartClick,
   isHeaderRight,
   onMenuClick,
+  onEditClick,
 }) => {
   return (
     <View style={styles.header}>
@@ -36,6 +37,14 @@ export const Header = ({
           size={24}
           color={Platform.OS === 'android' ? 'white' : Colors.primary}
           onPress={onCartClick}
+        />
+      )}
+      {onEditClick && (
+        <Icon.MaterialIcons
+          name={'create'}
+          size={24}
+          color={Platform.OS === 'android' ? 'white' : Colors.primary}
+          onPress={onEditClick}
         />
       )}
     </View>

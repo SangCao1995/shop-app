@@ -50,7 +50,11 @@ export const DrawerNavigator = () => {
           drawerIcon: ({focused, color, size}) => {
             let focusedIcon = focused ? Colors.primary : 'gray';
             return (
-              <Icon.Ionicons name={'md-create'} size={24} color={focusedIcon} />
+              <Icon.MaterialIcons
+                name={'create'}
+                size={24}
+                color={focusedIcon}
+              />
             );
           },
         }}

@@ -27,7 +27,7 @@ export const ProductItem = props => {
                 style={{width: '100%', height: '100%'}}
               />
             </View>
-            <View style={{alignItems: 'center', height: '15%'}}>
+            <View style={{alignItems: 'center', height: '17%'}}>
               <Text style={styles.title}>{data.title}</Text>
               <Text style={styles.price}>${data.price.toFixed(2)}</Text>
             </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   actions: {
-    height: '25%',
+    height: '23%',
     paddingHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',

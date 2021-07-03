@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SCREEN} from './Screen';
-import {ProductDetailScreen, CartScreen} from '../screens';
+import {ProductDetailScreen, CartScreen, EditProductScreen} from '../screens';
 import {DrawerNavigator} from './DrawerNavigator';
 
 const Stack = createStackNavigator();
@@ -15,6 +15,7 @@ export const StackNavigator = () => {
         component={ProductDetailScreen}
       />
       <Stack.Screen name={SCREEN.CART} component={CartScreen} />
+      <Stack.Screen name={SCREEN.EDIT_PRODUCT} component={EditProductScreen} />
     </Stack.Navigator>
   );
 };

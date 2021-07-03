@@ -4,3 +4,4 @@ export * from './OrdersScreen';
 export * from './ProductDetailScreen';
 export * from './ProductsOverviewScreen.js';
 export * from './UserProductsScreen';
+export * from './ProductEditScreen';

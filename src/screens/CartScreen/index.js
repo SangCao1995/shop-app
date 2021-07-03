@@ -37,13 +37,16 @@ export const CartScreen = props => {
 
   return (
     <View style={{flex: 1}}>
-      <Header onBackClick={() => props.navigation.goBack()} />
+      <Header
+        onBackClick={() => props.navigation.goBack()}
+        title={'Your Cart'}
+      />
       <View style={styles.container}>
         <View style={styles.summary}>
           <Text style={{fontFamily: 'OpenSans-Bold', fontSize: 18}}>
             Total:{' '}
             <Text style={{color: Colors.primary}}>
-              ${totalAmount.toFixed(2)}
+              ${Math.round(totalAmount.toFixed(2) * 100) / 100}
             </Text>
           </Text>
           <Button

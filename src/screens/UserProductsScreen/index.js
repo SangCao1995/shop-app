@@ -13,19 +13,28 @@ export const UserProductsScreen = props => {
     props.navigation.navigate(SCREEN.PRODUCT_DETAIL, {product: item});
   };
   const dispatch = useDispatch();
+  const editProductHandle = item => {
+    props.navigation.navigate(SCREEN.EDIT_PRODUCT, {product: item});
+  };
 
   return (
     <View style={{flex: 1}}>
       <Header
         title={'Your Products'}
         onMenuClick={() => props.navigation.toggleDrawer()}
+        isHeaderRight
+        onEditClick={() => props.navigation.navigate(SCREEN.EDIT_PRODUCT)}
       />
       <FlatList
         data={userProducts}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <ProductItem data={item} onSelect={() => selectItemHandle(item)}>
-            <Button title={'Edit'} color={Colors.primary} onPress={() => {}} />
+          <ProductItem data={item} onSelect={() => editProductHandle(item)}>
+            <Button
+              title={'Edit'}
+              color={Colors.primary}
+              onPress={() => editProductHandle(item)}
+            />
             <Button
               title={'Delete'}
               color={Colors.primary}
