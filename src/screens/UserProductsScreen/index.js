@@ -23,7 +23,9 @@ export const UserProductsScreen = props => {
         title={'Your Products'}
         onMenuClick={() => props.navigation.toggleDrawer()}
         isHeaderRight
-        onEditClick={() => props.navigation.navigate(SCREEN.EDIT_PRODUCT)}
+        onEditClick={() =>
+          props.navigation.navigate(SCREEN.EDIT_PRODUCT, {product: ''})
+        }
       />
       <FlatList
         data={userProducts}

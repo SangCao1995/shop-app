@@ -10,6 +10,7 @@ export const Header = ({
   isHeaderRight,
   onMenuClick,
   onEditClick,
+  onCheckmarkClick,
 }) => {
   return (
     <View style={styles.header}>
@@ -45,6 +46,14 @@ export const Header = ({
           size={24}
           color={Platform.OS === 'android' ? 'white' : Colors.primary}
           onPress={onEditClick}
+        />
+      )}
+      {onCheckmarkClick && (
+        <Icon.Ionicons
+          name={'md-checkmark'}
+          size={24}
+          color={Platform.OS === 'android' ? 'white' : Colors.primary}
+          onPress={onCheckmarkClick}
         />
       )}
     </View>
