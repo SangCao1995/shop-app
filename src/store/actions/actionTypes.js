@@ -9,4 +9,6 @@ export const orderTypes = {
 
 export const productTypes = {
   DELETE_PRODUCT: 'DELETE_PRODUCT',
+  CREATE_PRODUCT: 'CREATE_PRODUCT',
+  EDIT_PRODUCT: 'EDIT_PRODUCT',
 };

@@ -2,18 +2,38 @@ import React, {useState, useCallback} from 'react';
 import {View, Text, ScrollView, TextInput, StyleSheet} from 'react-native';
 import {Header} from '../../components';
 import {Colors} from '../../themes';
+import {useDispatch} from 'react-redux';
+import {productActions} from '../../store/actions';
 
 export const EditProductScreen = props => {
   const product = props.route.params.product;
   const [title, setTitle] = useState(product ? product.title : '');
   const [imageUrl, setImageUrl] = useState(product ? product.imageUrl : '');
   const [price, setPrice] = useState('');
+  const dispatch = useDispatch();
   const [description, setDescription] = useState(
     product ? product.description : '',
   );
   const submitHandle = useCallback(() => {
-    console.log('submit');
-  }, []);
+    if (product) {
+      const data = {
+        id: product.id,
+        title,
+        imageUrl,
+        description,
+      };
+      dispatch(productActions.editProduct(data));
+    } else {
+      const data = {
+        title,
+        imageUrl,
+        price: Number(price),
+        description,
+      };
+      dispatch(productActions.createProduct(data));
+    }
+    props.navigation.goBack();
+  }, [dispatch, title, imageUrl, price, description, product.id]);
 
   return (
     <View style={{flex: 1}}>
