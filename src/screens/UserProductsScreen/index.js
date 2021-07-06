@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View, Button} from 'react-native';
+import {FlatList, View, Button, Alert} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {ProductItem, Header} from '../../components';
 import {Colors} from '../../themes';
@@ -9,12 +9,19 @@ import {productActions} from '../../store/actions';
 export const UserProductsScreen = props => {
   const userProducts = useSelector(state => state.products.userProducts);
 
-  const selectItemHandle = item => {
-    props.navigation.navigate(SCREEN.PRODUCT_DETAIL, {product: item});
-  };
   const dispatch = useDispatch();
   const editProductHandle = item => {
     props.navigation.navigate(SCREEN.EDIT_PRODUCT, {product: item});
+  };
+  const deleteHandle = product => {
+    Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
+      {text: 'No', style: 'default'},
+      {
+        text: 'Yes',
+        style: 'destructive',
+        onPress: () => dispatch(productActions.deleteProduct(product)),
+      },
+    ]);
   };
 
   return (
@@ -40,7 +47,7 @@ export const UserProductsScreen = props => {
             <Button
               title={'Delete'}
               color={Colors.primary}
-              onPress={() => dispatch(productActions.deleteProduct(item))}
+              onPress={() => deleteHandle(item)}
             />
           </ProductItem>
         )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, FlatList} from 'react-native';
-import {Header} from '../../components';
+import {Header, Card} from '../../components';
 import {useSelector, useDispatch} from 'react-redux';
 import {Colors} from '../../themes';
 import {CartItem} from './components';
@@ -42,7 +42,7 @@ export const CartScreen = props => {
         title={'Your Cart'}
       />
       <View style={styles.container}>
-        <View style={styles.summary}>
+        <Card style={styles.summary}>
           <Text style={{fontFamily: 'OpenSans-Bold', fontSize: 18}}>
             Total:{' '}
             <Text style={{color: Colors.primary}}>
@@ -55,7 +55,7 @@ export const CartScreen = props => {
             color={Colors.accent}
             onPress={onAddOrderHandle}
           />
-        </View>
+        </Card>
         <View>
           <FlatList
             keyExtractor={(item, index) => item.productId}
@@ -80,12 +80,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     padding: 10,
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 8,
-    elevation: 5,
-    backgroundColor: 'white',
     borderRadius: 10,
   },
 });

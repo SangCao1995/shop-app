@@ -3,11 +3,12 @@ import {View, Text, Button, StyleSheet} from 'react-native';
 import {Colors} from '../../themes';
 import moment from 'moment';
 import {CartItem} from '../../screens/CartScreen/components';
+import {Card} from '../Card';
 
 export const OrderItem = ({data}) => {
   const [showDetails, setShowDetails] = useState(false);
   return (
-    <View style={styles.orderItem}>
+    <Card style={styles.orderItem}>
       <View style={styles.summary}>
         <Text style={{fontFamily: 'OpenSans-Bold', fontSize: 16}}>
           ${data.totalAmount.toFixed(2)}
@@ -28,19 +29,12 @@ export const OrderItem = ({data}) => {
           ))}
         </View>
       )}
-    </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   orderItem: {
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: 'white',
     margin: 20,
     padding: 10,
     alignItems: 'center',
